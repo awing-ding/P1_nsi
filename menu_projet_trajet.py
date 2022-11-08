@@ -37,7 +37,10 @@ def choix3():
             if t.vehiculeIsFind(nom) == None:             
                 consommationCarburant = input("Quel est la consommation au 100 de votre véhicule ? ")
                 typeCarburant = input("Quel carburant votre véhicule consomme-t-il ? ")
-                t.vehiculeWriter(nom, consommationCarburant, typeCarburant)
+                if t.carburantIsFind(typeCarburant):
+                    t.vehiculeWriter(nom, consommationCarburant, typeCarburant)
+                else:
+                    print("le carburant n'existe pas")
             else: 
                 print("le vehicule existe déjà")
         else:
@@ -55,7 +58,10 @@ def choix4():
             newName = input("Entrez le nouveau nom ")
             newConso = input("Entrez la nouvelle conso ")
             newType = input("Entrez le nouveau type de carburant ")
-            t.vehiculeWriterReplace(nom, newName, newConso, newType)
+            if t.carburantIsFind(newType):
+                t.vehiculeWriterReplace(nom, newName, newConso, newType)
+            else:
+                print("Ce carburant n'existe pas")
         else: 
             print("le vehicule n'a pas été trouvé")
 
@@ -71,6 +77,35 @@ def choix5():
         else: 
             print("le vehicule n'a pas été trouvé")
 
+def choix6():
+    """
+    Il imprime le nom du carburant et son prix
+    """
+    content = t.carburantParser()
+    for i in range(1,len(content)):
+        print(f"{content[i][0]} coute {content[i][1]}")
+
+def choix7():
+    """
+    Il imprime la consommation de chaque véhicule dans la base de données.
+    """
+    content = t.vehiculeParser()
+    for i in range(1,len(content)):
+        print(f"{content[i][0]} consomme {content[i][1]} de {content[i][2]} pour 100km")
+
+def choix8():
+    """
+    Il demande à l'utilisateur le nom d'un carburant, vérifie s'il existe, et si c'est le cas, demande
+    un nouveau nom et un nouveau prix, puis remplace l'ancien carburant par le nouveau
+    """
+    carburant = input("le nom du carburant que vous voulez modifier")
+    if t.carburantIsFind(carburant):
+        newCarburant = input("le nouveau nom du carburant")
+        newPrice = input("son nouveau prix")
+        t.carburantWriterReplace(carburant, newCarburant, newPrice)
+    else:
+        print("ce Carburant n'existe pas!")
+
 def main():
     """
     La fonction principale du programme. C'est la fonction qui sera appelée au lancement du programme.
@@ -85,6 +120,9 @@ def main():
             3-ajouter un véhicule \n \
             4-modifier un véhicule \n \
             5-supprimer un véhicule \n \
+            6-liste les carburants \n\
+            7-liste les vehicule \n\
+            8-modifier un carburant \n\
             ")
 
         # C'est une façon de quitter le programme.
@@ -110,6 +148,22 @@ def main():
         # C'est une fonction qui permet de supprimer un véhicule.
         elif choix == "5":
             choix5()
+        
+        # C'est une fonction qui imprime le nom du carburant et son prix
+        elif choix == "6":
+            choix6()
+        
+        # Une fonction qui imprime la consommation de chaque véhicule dans la base de données.
+        elif choix == "7":
+            choix7()
+        
+        # Une fonction qui permet à l'utilisateur de modifier un combustible.
+        elif choix == "8":
+            choix8()
+            
+        # Un moyen de dire à l'utilisateur que le choix qu'il a fait n'est pas valide.
+        else:
+            print("choix invalide, veuillez réessayer")
 
                 
 

@@ -155,9 +155,9 @@ def vehiculeDeleter(nom):
 
     with open("vehicule.txt", "r") as file:
         content = file.read()
-    content = re.sub(rf"{nom}.+\n", "", content)
-    with open("vehicule.txt" , "w") as file:
-        file.write(content)
+        content = re.sub(rf"{nom}.+\n", "", content)
+        with open("vehicule.txt" , "w") as file:
+            file.write(content)
 
 def vehiculeIsFind(nom):
     """
@@ -171,3 +171,29 @@ def vehiculeIsFind(nom):
     with open("vehicule.txt", 'r') as file:
         content = file.read()
     return re.search(nom, content)
+
+def carburantIsFind(nom):
+    """
+    Il ouvre le fichier, lit le contenu, puis recherche la chaîne que vous transmettez
+    
+    :param nom: le nom du carburant
+    :return: Une valeur booléenne correspondant à si le carburant a été trouvé ou pas.
+    """
+
+    with open("carburant.txt", 'r') as file:
+        content = file.read()
+    return re.search(nom, content)
+
+def carburantWriterReplace(nom, nomCarbu, prix):
+    """
+    Il ouvre le fichier, le lit, remplace la ligne et l'écrit dans le fichier
+    
+    :param nom: l'ancien nom du carburant
+    :param nomCarbu: Le nouveau nom du carburant
+    :param prix: le prix du carburant
+    """
+    with open("carburant.txt", 'r') as file:
+        content = file.read()
+        content = re.sub(rf"{nom}.+\n", f"{nomCarbu},{prix}", content)
+    with open("carburant.txt", 'w') as file:
+        file.write(content)
