@@ -1,0 +1,7 @@
+carburant,prix
+Gazole,1.222
+SP98,1.399
+SP95-E10,1.319
+SP95,1.286
+GPL,0.861
+E85,0.640

@@ -1,0 +1,7 @@
+nom,consommation,carburant
+Big boy,6.7,Gazole
+Blacky,3.6,SP95
+Lucky lady,4.2,SP95
+Zigzag,10.2,E85
+Toyota Yaris Hybrid,3.4,SP95-E10
+David,1.5,Gazole
